@@ -102,6 +102,7 @@ public class TPDisparadorController : MonoBehaviour
             
             if (playerMana.HasEnoughMana(manaRequired))
             {
+                
                 var balaDirection = (mouseWorldPosition - balaSpawnPosition.position).normalized;
                 
                 // Seleccionar el prefab correcto basado en isFuegoBala
