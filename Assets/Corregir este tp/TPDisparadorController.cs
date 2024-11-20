@@ -2,6 +2,7 @@ using System;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
+using UnityEngine.SceneManagement;
 
 public class TPDisparadorController : MonoBehaviour
 {
@@ -36,6 +37,11 @@ public class TPDisparadorController : MonoBehaviour
     private void Start()
     {
         aimLayerIndex = animator.GetLayerIndex("Aim");
+    }
+public void Morir()
+    {
+        SceneManager.LoadScene("Playground");
+        
     }
 
     private void Update()
@@ -116,6 +122,7 @@ public class TPDisparadorController : MonoBehaviour
 
                 // Consumir el maná
                 playerMana.UseMana(manaRequired);
+                
             }
         }
     }

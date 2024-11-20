@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Corregir este tp/Playground.unity
+    guid: e9017d5f96b9f09489b4b37e1d6eb914
+  - enabled: 1
+    path: Assets/Corregir este tp/Ganaste.unity
+    guid: 4fdf24c2e871bef45ac0d04e7218275c
   m_configObjects: {}

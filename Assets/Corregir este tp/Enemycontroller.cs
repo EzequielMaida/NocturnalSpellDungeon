@@ -11,6 +11,20 @@ public class EnemyController : MonoBehaviour
     private Transform player;            // Referencia al transform del jugador
     private bool isPlayerDetected = false;
 
+     public int vida = 100;
+    public void RecibirDaño(int cantidad)
+    {
+        vida -= cantidad;
+        if (vida <= 0)
+        {
+            Morir();
+        }
+    }
+    private void Morir()
+    {
+        Destroy(gameObject);
+    }
+
     void Start()
     {
         // Buscar el jugador en la escena
@@ -40,26 +54,11 @@ public class EnemyController : MonoBehaviour
             // Verificar si está lo suficientemente cerca para matar
             if (distanceToPlayer <= damageRadius)
             {
-                KillPlayer();
+                
             }
         }
     }
 
-    void KillPlayer()
-    {
-        // Obtener el script de salud/muerte del jugador
-        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-        
-        if (playerHealth != null)
-        {
-            // Llamar al método para matar al jugador
-            playerHealth.Die();
-        }
-        else
-        {
-            Debug.LogError("No se encontró el script de salud del jugador");
-        }
-    }
 
     // Método opcional para dibujar el radio de detección en el editor
     void OnDrawGizmosSelected()
@@ -72,20 +71,16 @@ public class EnemyController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, damageRadius);
     }
-}
 
-// Script adicional para el jugador (PlayerHealth)
-public class PlayerHealth : MonoBehaviour
-{
-    public void Die()
+     public void OnTriggerEnter(Collider other)
     {
-        // Lógica para matar al jugador
-        Debug.Log("¡El jugador ha muerto!");
-        
-        // Puedes agregar aquí:
-        // - Reiniciar el nivel
-        // - Mostrar pantalla de Game Over
-        // - Desactivar el jugador
-        gameObject.SetActive(false);
+        if (other.CompareTag("Player"))
+        {
+            TPDisparadorController jugador = other.GetComponent<TPDisparadorController>();
+            if (jugador != null)
+            {
+                jugador.Morir();
+            }
+        }
     }
 }
